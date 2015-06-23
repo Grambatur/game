@@ -10,6 +10,6 @@ namespace game
 {
     class MyButton:Button
     {
-        public Point Pozition;
+        public Point Position;
     }
 }

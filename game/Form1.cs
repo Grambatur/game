@@ -30,7 +30,7 @@ namespace game
                     Butons[i].Size = new Size(50, 50);                          //размеры
                     Butons[i].Click += new EventHandler(Buttons_Click);         //действие нажатия кнопки
                     Butons[i].Location = new Point(20 + x * 60, 40 + y * 60);   //позиция кнопки в окне
-                    Butons[i].Pozition = new Point(x, y);                       //матричная позиция
+                    Butons[i].Position = new Point(x, y);                       //матричная позиция
                     this.Controls.Add(Butons[i]);
                     Butons[i].Text = ((i++) + 1).ToString();                    //текст кнопки
                 }
@@ -40,15 +40,15 @@ namespace game
         private void Buttons_Click(object sender, EventArgs e)
         {
             MyButton Now = (MyButton)sender;
-            int x = Math.Abs(Now.Pozition.X - Butons[15].Pozition.X);
-            int y = Math.Abs(Now.Pozition.Y - Butons[15].Pozition.Y);
+            int x = Math.Abs(Now.Position.X - Butons[15].Position.X);
+            int y = Math.Abs(Now.Position.Y - Butons[15].Position.Y);
             if ((x == 1 && y == 0) || (x == 0 && y == 1))
             {
-                Point P = Now.Pozition;
-                Now.Pozition = Butons[15].Pozition;
-                Butons[15].Pozition = P;
-                Now.Location = new Point(20 + Now.Pozition.X * 60, 40 + Now.Pozition.Y * 60);
-                Butons[15].Location = new Point(20 + Butons[15].Pozition.X * 60, 40 + Butons[15].Pozition.Y * 60);
+                Point P = Now.Position;
+                Now.Position = Butons[15].Position;
+                Butons[15].Position = P;
+                Now.Location = new Point(20 + Now.Position.X * 60, 40 + Now.Position.Y * 60);
+                Butons[15].Location = new Point(20 + Butons[15].Position.X * 60, 40 + Butons[15].Position.Y * 60);
                 if (victory()) MessageBox.Show("Победа!");
             }
         }
@@ -61,18 +61,18 @@ namespace game
                 for (int x = 0; x < 4; x++)
                 {
                     Butons[i].Location = new Point(20 + x * 60, 40 + y * 60);
-                    Butons[i++].Pozition = new Point(x, y);
+                    Butons[i++].Position = new Point(x, y);
                 }
             Random rand = new Random();
             for (int j = 0; j < 50; j++)
             {
                 int a = rand.Next(0, 16);
                 int b = rand.Next(0, 16);
-                Point P = Butons[a].Pozition;
-                Butons[a].Pozition = Butons[b].Pozition;
-                Butons[b].Pozition = P;
-                Butons[a].Location = new Point(20 + Butons[a].Pozition.X * 60, 40 + Butons[a].Pozition.Y * 60);
-                Butons[b].Location = new Point(20 + Butons[b].Pozition.X * 60, 40 + Butons[b].Pozition.Y * 60);
+                Point P = Butons[a].Position;
+                Butons[a].Position = Butons[b].Position;
+                Butons[b].Position = P;
+                Butons[a].Location = new Point(20 + Butons[a].Position.X * 60, 40 + Butons[a].Position.Y * 60);
+                Butons[b].Location = new Point(20 + Butons[b].Position.X * 60, 40 + Butons[b].Position.Y * 60);
             }
             int[] Mat = new Int32[16];
             int num = 0;
@@ -91,7 +91,7 @@ namespace game
             for (num = 0; num < 15; num++)
                 for (int tik = num + 1; tik < 15; tik++)
                     if (Mat[num] > Mat[tik]) Sum++;
-            Sum += Butons[15].Pozition.X;
+            Sum += Butons[15].Position.X;
             if (Sum % 2 != 0)
                 MessageBox.Show("Нет решения.");
         }
@@ -106,19 +106,19 @@ namespace game
                 {
                     if (finish(j) == false)
                     {
-                        int x1 = Butons[j].Pozition.X - Butons[15].Pozition.X;
+                        int x1 = Butons[j].Position.X - Butons[15].Position.X;
                         if (x1 > 1)
                         {
                             for (int i = 0; i < 15; i++)
                             {
                                 if (i != j)
                                 {
-                                    int y = Butons[i].Pozition.X - Butons[15].Pozition.X;
+                                    int y = Butons[i].Position.X - Butons[15].Position.X;
                                     if (y == 1)
                                     {
-                                        Point P = Butons[i].Pozition;
-                                        Butons[i].Pozition = Butons[15].Pozition;
-                                        Butons[15].Pozition = P;
+                                        Point P = Butons[i].Position;
+                                        Butons[i].Position = Butons[15].Position;
+                                        Butons[15].Position = P;
                                     }
                                 }
                             }
@@ -129,31 +129,31 @@ namespace game
                             {
                                 if (i != j)
                                 {
-                                    int x = Butons[i].Pozition.X - Butons[15].Pozition.X;
+                                    int x = Butons[i].Position.X - Butons[15].Position.X;
                                     if (x == -1)
                                     {
-                                        Point P = Butons[i].Pozition;
-                                        Butons[i].Pozition = Butons[15].Pozition;
-                                        Butons[15].Pozition = P;
+                                        Point P = Butons[i].Position;
+                                        Butons[i].Position = Butons[15].Position;
+                                        Butons[15].Position = P;
                                     }
 
                                 }
                             }
                         }
 
-                        int y1 = Butons[j].Pozition.Y - Butons[15].Pozition.Y;
+                        int y1 = Butons[j].Position.Y - Butons[15].Position.Y;
                         if (y1 > 1)
                         {
                             for (int i = 0; i < 15; i++)
                             {
                                 if (i != j)
                                 {
-                                    int y = Butons[i].Pozition.Y - Butons[15].Pozition.Y;
+                                    int y = Butons[i].Position.Y - Butons[15].Position.Y;
                                     if (y == 1)
                                     {
-                                        Point P = Butons[i].Pozition;
-                                        Butons[i].Pozition = Butons[15].Pozition;
-                                        Butons[15].Pozition = P;
+                                        Point P = Butons[i].Position;
+                                        Butons[i].Position = Butons[15].Position;
+                                        Butons[15].Position = P;
                                     }
                                 }
                             }
@@ -164,12 +164,12 @@ namespace game
                             {
                                 if (i != j)
                                 {
-                                    int y = Butons[i].Pozition.Y - Butons[15].Pozition.Y;
+                                    int y = Butons[i].Position.Y - Butons[15].Position.Y;
                                     if (y == -1)
                                     {
-                                        Point P = Butons[i].Pozition;
-                                        Butons[i].Pozition = Butons[15].Pozition;
-                                        Butons[15].Pozition = P;
+                                        Point P = Butons[i].Position;
+                                        Butons[i].Position = Butons[15].Position;
+                                        Butons[15].Position = P;
                                     }
                                 }
                             }
@@ -185,11 +185,11 @@ namespace game
                                     m++;
                                     if (m == j)
                                     {
-                                        if (Math.Abs(Butons[j].Pozition.X - k) >= 1 || Math.Abs(Butons[j].Pozition.Y - l) >= 1)
+                                        if (Math.Abs(Butons[j].Position.X - k) >= 1 || Math.Abs(Butons[j].Position.Y - l) >= 1)
                                         {
-                                            Point P = Butons[j].Pozition;
-                                            Butons[j].Pozition = Butons[15].Pozition;
-                                            Butons[15].Pozition = P;
+                                            Point P = Butons[j].Position;
+                                            Butons[j].Position = Butons[15].Position;
+                                            Butons[15].Position = P;
                                         }
                                     }
                                 }
@@ -204,11 +204,11 @@ namespace game
                                     m++;
                                     if (m == j)
                                     {
-                                        if (Math.Abs(k - Butons[j].Pozition.X) >= 1 || Math.Abs(l - Butons[j].Pozition.Y) >= 1)
+                                        if (Math.Abs(k - Butons[j].Position.X) >= 1 || Math.Abs(l - Butons[j].Position.Y) >= 1)
                                         {
-                                            Point P = Butons[j].Pozition;
-                                            Butons[j].Pozition = Butons[15].Pozition;
-                                            Butons[15].Pozition = P;
+                                            Point P = Butons[j].Position;
+                                            Butons[j].Position = Butons[15].Position;
+                                            Butons[15].Position = P;
                                         }
                                     }
                                 }
@@ -216,7 +216,7 @@ namespace game
                     }
                     for (j = 0; j < 16; j++)
                     {
-                        Butons[j].Location = new Point(20 + Butons[j].Pozition.X * 60, 40 + Butons[j].Pozition.Y * 60);
+                        Butons[j].Location = new Point(20 + Butons[j].Position.X * 60, 40 + Butons[j].Position.Y * 60);
                     }
 
                 }
@@ -251,8 +251,8 @@ namespace game
             {
                 Random rand = new Random();
                 int i = rand.Next(0, 15);
-                int x = Butons[i].Pozition.X - Butons[15].Pozition.X;
-                int y = Butons[i].Pozition.Y - Butons[15].Pozition.Y;
+                int x = Butons[i].Position.X - Butons[15].Position.X;
+                int y = Butons[i].Position.Y - Butons[15].Position.Y;
                 if ((x == 1 && y == 0) || (x == 0 && y == 1))
                 {
                     int l, k;
@@ -263,13 +263,13 @@ namespace game
                             m++;
                             if (m == i)
                             {
-                                if (Butons[i].Pozition.X - k >= 1 || Butons[i].Pozition.Y - l >= 1)
+                                if (Butons[i].Position.X - k >= 1 || Butons[i].Position.Y - l >= 1)
                                 {
-                                    Point P = Butons[i].Pozition;
-                                    Butons[i].Pozition = Butons[15].Pozition;
-                                    Butons[15].Pozition = P;
-                                    Butons[i].Location = new Point(20 + Butons[i].Pozition.X * 60, 40 + Butons[i].Pozition.Y * 60);
-                                    Butons[15].Location = new Point(20 + Butons[15].Pozition.X * 60, 40 + Butons[15].Pozition.Y * 60);
+                                    Point P = Butons[i].Position;
+                                    Butons[i].Position = Butons[15].Position;
+                                    Butons[15].Position = P;
+                                    Butons[i].Location = new Point(20 + Butons[i].Position.X * 60, 40 + Butons[i].Position.Y * 60);
+                                    Butons[15].Location = new Point(20 + Butons[15].Position.X * 60, 40 + Butons[15].Position.Y * 60);
                                 }
                             }
                         }
@@ -284,13 +284,13 @@ namespace game
                             m++;
                             if (m == i)
                             {
-                                if (k - Butons[i].Pozition.X >= 1 || l - Butons[i].Pozition.Y >= 1)
+                                if (k - Butons[i].Position.X >= 1 || l - Butons[i].Position.Y >= 1)
                                 {
-                                    Point P = Butons[i].Pozition;
-                                    Butons[i].Pozition = Butons[15].Pozition;
-                                    Butons[15].Pozition = P;
-                                    Butons[i].Location = new Point(20 + Butons[i].Pozition.X * 60, 40 + Butons[i].Pozition.Y * 60);
-                                    Butons[15].Location = new Point(20 + Butons[15].Pozition.X * 60, 40 + Butons[15].Pozition.Y * 60);
+                                    Point P = Butons[i].Position;
+                                    Butons[i].Position = Butons[15].Position;
+                                    Butons[15].Position = P;
+                                    Butons[i].Location = new Point(20 + Butons[i].Position.X * 60, 40 + Butons[i].Position.Y * 60);
+                                    Butons[15].Location = new Point(20 + Butons[15].Position.X * 60, 40 + Butons[15].Position.Y * 60);
                                 }
                             }
                         }
