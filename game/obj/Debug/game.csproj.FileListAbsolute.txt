@@ -1,0 +1,9 @@
+D:\Documents\Visual Studio 2012\Projects\game\game\bin\Debug\game.exe.config
+D:\Documents\Visual Studio 2012\Projects\game\game\obj\Debug\game.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2012\Projects\game\game\obj\Debug\game.Form1.resources
+D:\Documents\Visual Studio 2012\Projects\game\game\obj\Debug\game.Properties.Resources.resources
+D:\Documents\Visual Studio 2012\Projects\game\game\obj\Debug\game.csproj.GenerateResource.Cache
+D:\Documents\Visual Studio 2012\Projects\game\game\bin\Debug\game.exe
+D:\Documents\Visual Studio 2012\Projects\game\game\bin\Debug\game.pdb
+D:\Documents\Visual Studio 2012\Projects\game\game\obj\Debug\game.exe
+D:\Documents\Visual Studio 2012\Projects\game\game\obj\Debug\game.pdb
